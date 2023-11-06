@@ -98,6 +98,11 @@ load 'assert'
   assert_equal "mips64le" "$(TARGETPLATFORM=linux/mips64le xx-info pkg-arch)"
 }
 
+@test "loong64" {
+  assert_equal "loong64-alpine-linux-musl" "$(TARGETPLATFORM=linux/loong64 xx-info triple)"
+  assert_equal "loong64" "$(TARGETPLATFORM=linux/loong64 xx-info pkg-arch)"
+}
+
 @test "darwin" {
   assert_equal "x86_64-apple-macos10.6" "$(TARGETPLATFORM=darwin/amd64 xx-info triple)"
   assert_equal "darwin" "$(TARGETPLATFORM=darwin/amd64 xx-info os)"

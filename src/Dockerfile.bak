@@ -1,8 +1,8 @@
-ARG TEST_BASE_TYPE=lcr.loongnix.cn/library/alpine:v3.18-base
+ARG TEST_BASE_TYPE=lcr.loongnix.cn/library/debian:sid
 ARG TEST_BASE_IMAGE=${TEST_BASE_TYPE}
 ARG TEST_WITH_DARWIN=false
 # build prepares the sources
-FROM lcr.loongnix.cn/library/alpine:v3.18-base AS build
+FROM lcr.loongnix.cn/library/debian:sid AS build
 WORKDIR /out
 COPY xx-* /out/
 RUN ln -s xx-cc /out/xx-clang && \
@@ -13,14 +13,13 @@ RUN ln -s xx-cc /out/xx-clang && \
 # xx builds the xx image
 FROM scratch AS xx
 COPY --from=build /out/ /usr/bin/
-RUN 
 
 FROM lcr.loongnix.cn/library/tonistiigi/bats-assert AS bats-assert
 
 FROM ${TEST_BASE_IMAGE} AS test-base-alpine
 RUN --mount=type=cache,target=/pkg-cache \
     ln -s /pkg-cache /etc/apk/cache && \
-    apk add bats vim
+    apt install -y bats vim
 WORKDIR /work
 
 FROM ${TEST_BASE_IMAGE} AS test-base-debian
@@ -107,3 +106,4 @@ COPY *.bats test_helper.bash ./
 
 # default is alias to build xx image
 FROM xx as default
+

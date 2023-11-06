@@ -79,3 +79,8 @@ fi
   assert_equal "mips64el-linux-gnuabi64" "$(TARGETPLATFORM=linux/mips64le xx-info triple)"
   assert_equal "mips64el" "$(TARGETPLATFORM=linux/mips64le xx-info pkg-arch)"
 }
+
+@test "loong64" {
+  assert_equal "loong64-linux-gnu" "$(TARGETPLATFORM=linux/loong64 xx-info triple)"
+  assert_equal "loong64" "$(TARGETPLATFORM=linux/loong64 xx-info pkg-arch)"
+}

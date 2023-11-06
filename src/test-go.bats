@@ -28,6 +28,9 @@ testEnv() {
     "mips"*)
       assert_output --partial 'GOMIPS="'"$expMips"'"'
       ;;
+     "loong64"*)
+      assert_output --partial 'GOLOONG64="'"$expLOONG64"'"'
+      ;;
   esac
 }
 
@@ -150,7 +153,19 @@ testEnv() {
   testEnv
   unset TARGETVARIANT
 }
+@test "loong64-env" {
+  export TARGETARCH=loong64
+  expMips=hardfloat
+  testEnv
+}
 
+@test "loong64-softfloat-env" {
+  export TARGETARCH=loong64
+  export TARGETVARIANT=softfloat
+  expMips=softfloat
+  testEnv
+  unset TARGETVARIANT
+}
 @test "darwin-amd64-env" {
   export TARGETOS=darwin
   export TARGETARCH=amd64
@@ -244,6 +259,18 @@ testHelloGO() {
 
 @test "mips64le-softfloat-hellogo" {
   export TARGETARCH=mips64le
+  export TARGETVARIANT=softfloat
+  testHelloGO
+  unset TARGETVARIANT
+}
+
+@test "loong64-hellogo" {
+  export TARGETARCH=loong64
+  testHelloGO
+}
+
+@test "loong64-softfloat-hellogo" {
+  export TARGETARCH=loong64
   export TARGETVARIANT=softfloat
   testHelloGO
   unset TARGETVARIANT

@@ -101,6 +101,10 @@ load 'assert'
   assert_equal "mips64le" "$(TARGETPLATFORM=linux/mips64le xx-info march)"
 }
 
+@test "loong64" {
+  assert_equal "loong64" "$(TARGETPLATFORM=linux/loong64 xx-info march)"
+}
+
 @test "parse pair" {
   TARGETPAIR=linux-amd64 run xx-info os
   assert_success
@@ -149,6 +153,10 @@ load 'assert'
   TARGETPAIR=linux-mips64le run xx-info
   assert_success
   assert_output "$(TARGETPLATFORM=linux/mips64le xx-info)"
+
+  TARGETPAIR=linux-loong64 run xx-info
+  assert_success
+  assert_output "$(TARGETPLATFORM=linux/loong64 xx-info)"
 }
 
 @test "windows" {

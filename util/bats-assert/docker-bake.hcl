@@ -1,11 +1,10 @@
-variable "TARGET_REPO" {
-    default = "tonistiigi/bats-assert"
-}
-
 target "default" {
-    tags = ["${TARGET_REPO}"]
+    args={
+        HTTPS_PROXY= "http://10.130.0.20:7890" ,
+    }
+    dockerfile="Dockerfile.bak"
+    tags = ["lcr.loongnix.cn/library/tonistiigi/bats-assert"]
     cache-to = ["type=inline"]
-    cache-from = ["${TARGET_REPO}"]
 }
 
 target "all" {
@@ -19,7 +18,8 @@ target "all" {
         "linux/386",
         "linux/riscv64",
         "linux/s390x",
-        "linux/ppc64le"
+        "linux/ppc64le",
+        "linux/loong64"
     ]
 }
 

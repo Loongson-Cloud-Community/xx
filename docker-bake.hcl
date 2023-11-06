@@ -1,9 +1,9 @@
 variable "XX_REPO" {
-    default = "tonistiigi/xx"
+    default = "lcr.loongnix.cn/library/tonistiigi/xx"
 }
 
 variable "TEST_BASE_TYPE" {
-    default = "alpine"
+    default = "lcr.loongnix.cn/library/alpine"
 }
 
 // Special target: https://github.com/docker/metadata-action#bake-definition
@@ -22,9 +22,9 @@ target "test-alpine" {
 target "test-debian" {
     inherits = ["test-src"]
     args = {
-        APT_MIRROR = "cdn-fastly.deb.debian.org"
-        TEST_BASE_TYPE = "debian"
-        TEST_BASE_IMAGE = "debian:bullseye"
+        //APT_MIRROR = "cdn-fastly.deb.debian.org"
+        TEST_BASE_TYPE = "lcr.loongnix.cn/library/debian"
+        TEST_BASE_IMAGE = "debian:sid"
     }
 }
 
@@ -115,19 +115,8 @@ group "default" {
 
 target "_all-platforms" {
     platforms = [
-        "linux/386",
-        "linux/amd64",
-        "linux/arm64",
-        "linux/arm/v5",
-        "linux/arm/v6",
-        "linux/arm/v7",
-        "linux/mips",
-        "linux/mipsle",
-        "linux/mips64",
-        "linux/mips64le",
-        "linux/ppc64le",
-        "linux/s390x",
-        "linux/riscv64"
+         "linux/mips",
+         "linux/loong64"
     ]
 }
 
@@ -162,6 +151,7 @@ target "sdk-extras" {
         "linux/ppc64le",
         "linux/riscv64",
         "linux/s390x",
+	"linux/loong64",
         "windows/386",
         "windows/amd64",
         "windows/arm",

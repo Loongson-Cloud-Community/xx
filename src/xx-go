@@ -35,6 +35,9 @@ if [ -n "$TARGETVARIANT" ]; then
     "mips"*)
       export GOMIPS="${TARGETVARIANT}"
       ;;
+     "loong64"*)
+      export GOLOONG64="${TARGETVARIANT}"
+      ;;
   esac
 fi
 
