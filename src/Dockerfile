@@ -14,7 +14,7 @@ RUN ln -s xx-cc /out/xx-clang && \
 FROM scratch AS xx
 COPY --from=build /out/ /usr/bin/
 
-FROM lcr.loongnix.cn/library/tonistiigi/bats-assert AS bats-assert
+FROM lcr.loongnix.cn/tonistiigi/bats-assert AS bats-assert
 
 FROM ${TEST_BASE_IMAGE} AS test-base-alpine
 RUN --mount=type=cache,target=/pkg-cache \
