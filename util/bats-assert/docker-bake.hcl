@@ -1,9 +1,6 @@
 target "default" {
-    args={
-        HTTPS_PROXY= "http://10.130.0.20:7890" ,
-    }
-    dockerfile="Dockerfile.bak"
-    tags = ["lcr.loongnix.cn/library/tonistiigi/bats-assert"]
+    dockerfile="Dockerfile"
+    tags = ["lcr.loongnix.cn/tonistiigi/bats-assert"]
     cache-to = ["type=inline"]
 }
 

@@ -1,12 +1,12 @@
 variable "TAG" {
-  default = "latest"
+  default = "1.3.0"
 }
 
 group "default" {
-  targets = ["hello"]
+  targets = ["default"]
 }
 
-target "hello" {
-  dockerfile = "Dockerfile.bak"
-  tags = ["lcr.loongnix.cn/library/xx:${TAG}"]
+target "default" {
+  dockerfile = "Dockerfile"
+  tags = ["lcr.loongnix.cn/tonistiigi/xx:${TAG}"]
 } 
