@@ -104,6 +104,9 @@ if [ -n "$TARGETPLATFORM" ]; then
       "loong64"*)
         TARGETVARIANT="$(echo $TARGETPLATFORM | cut -d"/" -f3)"
         ;;
+      "loongarch64"*)
+        TARGETVARIANT="$(echo $TARGETPLATFORM | cut -d"/" -f3)"
+        ;;
     esac
   fi
 fi

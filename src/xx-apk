@@ -51,6 +51,11 @@ setup() {
     echo "https://dl-cdn.alpinelinux.org/alpine/edge/main" >"$apk_dir/repositories"
     echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >>"$apk_dir/repositories"
   fi
+  # loong64 supported since alpine 3.21
+  if [ "$TARGETARCH" = "loong64" ] ; then
+    echo "https://dl-cdn.alpinelinux.org/alpine/v3.21/main" >"$apk_dir/repositories"
+    echo "https://dl-cdn.alpinelinux.org/alpine/v3.21/community" >>"$apk_dir/repositories"
+  fi
   mkdir "$apk_dir/keys"
   mkdir "$apk_dir/protected_paths.d"
   echo "$XX_PKG_ARCH" >"$apk_dir/arch"
