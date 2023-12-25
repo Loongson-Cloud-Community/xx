@@ -52,7 +52,7 @@ setup() {
     echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >>"$apk_dir/repositories"
   fi
   # add loongarch support
-  if [ "$TARGETARCH" = "loongarch64" ]; then
+  if [ "$TARGETARCH" = "loong64" ]; then
     echo "http://alpine.loongnix.cn/v3.11/main" >"$apk_dir/repositories"
     echo "http://alpine.loongnix.cn/v3.11/community" >>"$apk_dir/repositories"
     echo "http://alpine.loongnix.cn/v3.11/testing" >>"$apk_dir/repositories"

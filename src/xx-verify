@@ -220,6 +220,10 @@ for f in "$@"; do
       expArch="MIPS"
       expArch2="64-bit LSB"
       ;;
+    "loong64")
+      expArch="LoongArch-64"
+      expArch2="64-bit LSB ABI"
+      ;;
     "386")
       expArch="Intel 80386"
       if [ "$TARGETOS" != "windows" ]; then

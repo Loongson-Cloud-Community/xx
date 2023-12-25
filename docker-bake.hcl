@@ -127,7 +127,8 @@ target "_all-platforms" {
         "linux/mips64le",
         "linux/ppc64le",
         "linux/s390x",
-        "linux/riscv64"
+        "linux/riscv64",
+	"linux/loong64"
     ]
 }
 
@@ -161,6 +162,7 @@ target "sdk-extras" {
         "linux/mips64le",
         "linux/ppc64le",
         "linux/riscv64",
+	"linux/loong64",
         "linux/s390x",
         "windows/386",
         "windows/amd64",
@@ -203,6 +205,7 @@ target "binutils" {
             "linux-ppc64le",
             "linux-riscv64",
             "linux-s390x",
+	    "linux-loong64",
             "windows-386",
             "windows-amd64"
         ]
@@ -263,6 +266,7 @@ target "ld-static-tgz" {
             "linux-armv7",
             "linux-ppc64le",
             "linux-riscv64",
+	    "linux-loong64",
             "linux-s390x",
             "windows-386",
             "windows-amd64"

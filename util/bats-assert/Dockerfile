@@ -1,5 +1,6 @@
-FROM --platform=$BUILDPLATFORM alpine AS build
-RUN apk add --no-cache git
+FROM cr.loongnix.cn/library/debian:buster AS build
+#RUN apk add --no-cache git
+RUN apt update && apt install -y git bats
 WORKDIR /work
 RUN git clone --bare https://github.com/ztombol/bats-support && \
     mkdir -p /out/bats-support && cd /out/bats-support && \
@@ -16,8 +17,8 @@ RUN echo 'source "$(dirname "${BASH_SOURCE[0]}")/bats-support/load.bash"' > /out
 FROM scratch AS release
 COPY --from=build /out /
 
-FROM alpine AS test-gen
-RUN apk add --no-cache bats
+FROM cr.loongnix.cn/library/debian:buster AS test-gen
+RUN apt update && apt install  -y bats
 WORKDIR /work
 COPY --from=release . .
 COPY test.bats .
@@ -31,3 +32,5 @@ FROM scratch AS golden
 COPY --from=test-gen /work/test.bats.output test.bats.golden
 
 FROM release
+
+

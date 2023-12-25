@@ -1,11 +1,7 @@
-variable "TARGET_REPO" {
-    default = "tonistiigi/bats-assert"
-}
-
 target "default" {
-    tags = ["${TARGET_REPO}"]
+    dockerfile="Dockerfile"
+    tags = ["cr.loongnix.cn/tonistiigi/bats-assert"]
     cache-to = ["type=inline"]
-    cache-from = ["${TARGET_REPO}"]
 }
 
 target "all" {
@@ -19,7 +15,8 @@ target "all" {
         "linux/386",
         "linux/riscv64",
         "linux/s390x",
-        "linux/ppc64le"
+        "linux/ppc64le",
+        "linux/loong64"
     ]
 }
 
@@ -33,3 +30,4 @@ target "generate-golden" {
         "."
     ]
 }
+
