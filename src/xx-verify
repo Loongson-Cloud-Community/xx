@@ -192,6 +192,10 @@ for f in "$@"; do
       expArch="RISC-V"
       expArch2="64-bit LSB"
       ;;
+    "loong64")
+      expArch="LoongArch"
+      expArch2="64-bit LSB"
+      ;;
     "ppc64le")
       expArch="64-bit PowerPC"
       expArch2="64-bit LSB"

@@ -1,5 +1,5 @@
 variable "XX_REPO" {
-    default = "tonistiigi/xx"
+    default = "lcr.loongnix.cn/tonistiigi/xx"
 }
 
 variable "TEST_BASE_TYPE" {
@@ -8,7 +8,7 @@ variable "TEST_BASE_TYPE" {
 
 // Special target: https://github.com/docker/metadata-action#bake-definition
 target "meta-helper" {
-    tags = ["${XX_REPO}:test"]
+    tags = ["${XX_REPO}:1.3.0"]
 }
 
 target "test-src" {
@@ -24,7 +24,7 @@ target "test-debian" {
     args = {
         APT_MIRROR = "cdn-fastly.deb.debian.org"
         TEST_BASE_TYPE = "debian"
-        TEST_BASE_IMAGE = "debian:bullseye"
+        TEST_BASE_IMAGE = "debian:trixie"
     }
 }
 
@@ -115,7 +115,6 @@ group "default" {
 
 target "_all-platforms" {
     platforms = [
-        "linux/386",
         "linux/amd64",
         "linux/arm64",
         "linux/arm/v5",
@@ -127,9 +126,17 @@ target "_all-platforms" {
         "linux/mips64le",
         "linux/ppc64le",
         "linux/s390x",
-        "linux/riscv64"
+        "linux/riscv64",
+	"linux/loong64"
     ]
 }
+
+target "loong64" {
+    platforms = [ 
+        "linux/loong64"
+    ]
+}
+
 
 target "xx" {
     inherits = ["meta-helper"]
@@ -138,7 +145,7 @@ target "xx" {
 }
 
 target "xx-all" {
-    inherits = ["xx", "_all-platforms"]
+    inherits = ["xx", "loong64"]
 }
 
 target "sdk-extras" {
@@ -162,6 +169,7 @@ target "sdk-extras" {
         "linux/ppc64le",
         "linux/riscv64",
         "linux/s390x",
+	"linux/loong64",
         "windows/386",
         "windows/amd64",
         "windows/arm",
@@ -203,6 +211,7 @@ target "binutils" {
             "linux-ppc64le",
             "linux-riscv64",
             "linux-s390x",
+	    "linux-loong64",
             "windows-386",
             "windows-amd64"
         ]
@@ -264,6 +273,7 @@ target "ld-static-tgz" {
             "linux-ppc64le",
             "linux-riscv64",
             "linux-s390x",
+	    "linux-loong64",
             "windows-386",
             "windows-amd64"
         ]

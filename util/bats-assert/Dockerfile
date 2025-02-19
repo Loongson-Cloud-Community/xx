@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM alpine AS build
+FROM --platform=$BUILDPLATFORM lcr.loongnix.cn/library/alpine:3.21 AS build
 RUN apk add --no-cache git
 WORKDIR /work
 RUN git clone --bare https://github.com/ztombol/bats-support && \
@@ -16,7 +16,7 @@ RUN echo 'source "$(dirname "${BASH_SOURCE[0]}")/bats-support/load.bash"' > /out
 FROM scratch AS release
 COPY --from=build /out /
 
-FROM alpine AS test-gen
+FROM lcr.loongnix.cn/library/alpine AS test-gen
 RUN apk add --no-cache bats
 WORKDIR /work
 COPY --from=release . .

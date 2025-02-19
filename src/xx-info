@@ -171,6 +171,12 @@ if [ -z "$TARGETARCH" ]; then
     "riscv64")
       TARGETARCH="riscv64"
       ;;
+    "loong64")
+      TARGETARCH="loong64"
+      ;;
+    "loongarch64")
+      TARGETARCH="loong64"
+      ;;
     "ppc64le")
       TARGETARCH="ppc64le"
       ;;
@@ -281,6 +287,13 @@ case "$TARGETARCH" in
       triplearch="${RISCV64_TARGET_ARCH}"
     fi
     XX_TRIPLE="${triplearch}${vendor}-linux-${XX_LIBC}"
+    ;;
+  "loong64")
+    XX_MARCH="loongarch64"
+    XX_DEBIAN_ARCH="loong64"
+    XX_ALPINE_ARCH="loongarch64"
+    XX_RHEL_ARCH="loongarch64"
+    XX_TRIPLE="loongarch64${vendor}-linux-${XX_LIBC}"
     ;;
   "ppc64le")
     XX_MARCH="ppc64le"

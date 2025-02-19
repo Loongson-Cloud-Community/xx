@@ -1,11 +1,11 @@
-# syntax=docker/dockerfile:1.5
+## syntax=docker/dockerfile:1.5
 
-ARG TEST_BASE_TYPE=alpine
+ARG TEST_BASE_TYPE=lcr.loongnix.cn/library/alpine
 ARG TEST_BASE_IMAGE=${TEST_BASE_TYPE}
 ARG TEST_WITH_DARWIN=false
 
 # build prepares the sources
-FROM --platform=$BUILDPLATFORM alpine AS build
+FROM --platform=$BUILDPLATFORM lcr.loongnix.cn/library/alpine:3.21 AS build
 COPY xx-* /out/
 RUN ln -s xx-cc /out/xx-clang && \
     ln -s xx-cc /out/xx-clang++ && \
@@ -16,7 +16,7 @@ RUN ln -s xx-cc /out/xx-clang && \
 FROM scratch AS xx
 COPY --from=build /out/ /usr/bin/
 
-FROM --platform=$BUILDPLATFORM tonistiigi/bats-assert AS bats-assert
+FROM --platform=$BUILDPLATFORM lcr.loongnix.cn/tonistiigi/bats-assert AS bats-assert
 
 FROM ${TEST_BASE_IMAGE} AS test-base-alpine
 RUN --mount=type=cache,target=/pkg-cache \
